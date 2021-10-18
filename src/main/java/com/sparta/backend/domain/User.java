@@ -1,0 +1,37 @@
+package com.sparta.backend.domain;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import javax.persistence.*;
+import java.util.List;
+
+@ToString
+@Getter
+@NoArgsConstructor
+@Entity
+public class User {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String pw;
+
+    @Column(nullable = false)
+    private String pwcheck;
+
+    @Column(nullable = false)
+    private String nickname;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Post> postList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Comment> commentList;
+
+}
