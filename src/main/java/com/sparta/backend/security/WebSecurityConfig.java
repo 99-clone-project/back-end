@@ -1,17 +1,23 @@
 package com.sparta.backend.security;
 
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+@RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity // 스프링 Security 지원을 가능하게 함
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Bean
     public BCryptPasswordEncoder encodePassword() {
@@ -29,29 +35,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors();
-        // 회원 관리 처리 API (POST /user/**) 에 대해 CSRF 무시
-        http.csrf()
-                .ignoringAntMatchers("/user/**");
-
-        http.authorizeRequests()
-                // image 폴더를 login 없이 허용
-                .antMatchers("/images/**").permitAll()
-                // css 폴더를 login 없이 허용
-                .antMatchers("/css/**").permitAll()
-                // 회원 관리 처리 API 전부를 login 없이 허용
+        http.csrf().disable()
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
                 .antMatchers("/user/**").permitAll()
-                // 그 외 어떤 요청이든 '인증'
-//                .anyRequest().authenticated()
+                .antMatchers("/").permitAll()
                 .and()
-                // 로그인 기능
-                .formLogin()
-//                .loginPage("/user/login")
-                .defaultSuccessUrl("/")
-                .failureUrl("/user/login?error")
-                .permitAll()
-                .and()
-                // 로그아웃 기능
-                .logout()
-                .permitAll();
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
+                        UsernamePasswordAuthenticationFilter.class);
     }
 }
