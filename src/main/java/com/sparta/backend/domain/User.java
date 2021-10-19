@@ -1,5 +1,6 @@
 package com.sparta.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -26,9 +27,11 @@ public class User {
     private String nickname;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Post> postList;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Comment> commentList;
 
     public User(String email, String pw, String nickname){

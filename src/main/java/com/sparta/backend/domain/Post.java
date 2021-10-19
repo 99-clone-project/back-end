@@ -1,5 +1,7 @@
 package com.sparta.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sparta.backend.dto.PostRequestDto;
 import lombok.Getter;
@@ -24,6 +26,7 @@ public class Post extends BaseEntity {
     private User user;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Comment> commentList;
 
     @Column(nullable = false)
