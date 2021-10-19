@@ -23,9 +23,6 @@ public class User {
     private String pw;
 
     @Column(nullable = false)
-    private String pwcheck;
-
-    @Column(nullable = false)
     private String nickname;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
