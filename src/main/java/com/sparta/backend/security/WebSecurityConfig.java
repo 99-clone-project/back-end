@@ -28,6 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.cors();
         // 회원 관리 처리 API (POST /user/**) 에 대해 CSRF 무시
         http.csrf()
                 .ignoringAntMatchers("/user/**");
