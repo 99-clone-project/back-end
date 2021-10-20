@@ -20,7 +20,7 @@ public class PostService {
     // 포스트 전체 조회
     public List<Post> getList() {
 
-        return postRepository.findAll();
+        return postRepository.findAllByOrderByRegDateDesc();
     }
 
     // 포스트 생성

@@ -39,7 +39,7 @@ public class CommentService {
     // 댓글 조회
     public List<Comment> getCommentList(Long postId) {
 
-        return commentRepository.findAllByPostPostId(postId);
+        return commentRepository.findAllByPostPostIdByRegDateDesc(postId);
     }
 
     // 댓글 수정
