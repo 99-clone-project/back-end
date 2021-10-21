@@ -6,6 +6,7 @@ import com.sparta.backend.dto.PostRequestDto;
 import com.sparta.backend.repository.PostRepository;
 import com.sparta.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class PostService {
     // 포스트 전체 조회
     public List<Post> getList() {
 
-        return postRepository.findAll();
+        return postRepository.findAll(Sort.by("regDate").descending());
     }
 
     // 포스트 생성
