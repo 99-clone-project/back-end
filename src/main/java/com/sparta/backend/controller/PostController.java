@@ -27,7 +27,7 @@ public class PostController {
     @PostMapping("/posts")
     public String createPost(@RequestBody PostRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-        Long userId = userDetails.getUser().getUserId();
+        Long userId = userDetails.getUser().getId();
 
         postService.createPost(userId, requestDto);
 

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @ToString(exclude = "user")
@@ -18,7 +19,7 @@ import java.util.List;
 public class Post extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long postId;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonManagedReference
@@ -37,6 +38,13 @@ public class Post extends BaseEntity {
 
     private String image;
 
+    @OneToMany(mappedBy = "post")
+    private final List<Heart>hearts = new ArrayList<>();
+
+    //heart 갯수 보여주기
+    @Column(columnDefinition = "integer default 0")
+    private int heartNum;
+
     public Post(User user, PostRequestDto requestDto) {
         this.user = user;
         this.title = requestDto.getTitle();
@@ -50,4 +58,13 @@ public class Post extends BaseEntity {
         this.image = requestDto.getImage();
     }
 
+    public void deleteHeart(Heart heart) {
+        this.hearts.remove(heart);
+        this.heartNum -=1;
+
+    }
+    public void addHeart(Heart heart) {
+        this.hearts.add(heart);
+        this.heartNum +=1;
+    }
 }

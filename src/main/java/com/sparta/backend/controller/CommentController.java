@@ -20,7 +20,7 @@ public class CommentController {
     @PostMapping("/comments")
     public Comment createComment(@RequestBody CommentRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-        Long userId = userDetails.getUser().getUserId();
+        Long userId = userDetails.getUser().getId();
 
         return commentService.createComment(userId, requestDto);
     }

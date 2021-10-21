@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @ToString
@@ -15,7 +16,7 @@ import java.util.List;
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -34,10 +35,20 @@ public class User {
     @JsonBackReference
     private List<Comment> commentList;
 
+    @OneToMany(mappedBy = "user")
+    private final List<Heart> hearts = new ArrayList<>();
+
     public User(String email, String pw, String nickname){
         this.email = email;
         this.pw = pw;
         this.nickname = nickname;
+    }
+
+    public void deleteHeart(Heart heart) {
+        this.hearts.remove(heart);
+    }
+    public void addHeart(Heart heart){
+        this.hearts.add(heart);
     }
 
 }
