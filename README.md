@@ -14,8 +14,7 @@ velog의 기본적인 기능으로 로그인, 회원가입, 게시물 작성, �
 
 ## 💻 웹 사이트
 
-웹사이트 주소넣기
-
+http://17log.s3-website.ap-northeast-2.amazonaws.com/
 
 ## 🎬 실행화면
 
