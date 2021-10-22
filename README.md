@@ -39,7 +39,7 @@ https://locrian-cabbage-797.notion.site/f0f96c98f8de414fb115f6a7b2f9c1dc?v=53d8b
 ## 🙋 팀원
 
 - Front-end(React): 김다원, 박새봄, 배수인
-- Back-end(Node.js): 송지은, 홍재환
+- Back-end(Spring): 송지은, 홍재환
 
 
 
