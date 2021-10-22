@@ -76,7 +76,7 @@ public class Heart {
 }
 
 ```
-Heart의 테이블을 살펴보면,  Post와 User테이블을 다대일 연관관계를 맺고 있다.
+Heart의 테이블을 살펴보면,  Post와 User테이블을 다대일 연관관계를 맺고 있다.  
 좋아요를 누르게 되면 post의 id와 user의 id를 얻을 수 있는 구조를 가졌다.
 
 Post 와 User 테이블은 각각 postId 와 userId를 외래키로 가졌다.
