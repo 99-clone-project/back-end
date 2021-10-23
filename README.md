@@ -43,7 +43,7 @@ https://locrian-cabbage-797.notion.site/f0f96c98f8de414fb115f6a7b2f9c1dc?v=53d8b
 
 
 
-## Trouble Shooting�
+## Trouble Shooting
 
 
 
