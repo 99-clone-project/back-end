@@ -43,12 +43,12 @@ https://locrian-cabbage-797.notion.site/f0f96c98f8de414fb115f6a7b2f9c1dc?v=53d8b
 
 
 
-## Error💦
+## Trouble Shooting�
 
 
 
 
-#### 좋아요 기능 구현중, 변수명으로 맞닥뜨린 오류
+#### 좋아요 기능 구현중, 변수명으로 맞닥뜨렸던 오류
 
  ```java
 @NoArgsConstructor
